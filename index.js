@@ -56,11 +56,10 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
-}
+function inning(){
+  let randomNum=Math.round(Math.random()*2);
+};
+console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -76,11 +75,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(cb, inningNum){
+  var scores ={};
+  let homeTeamGameScore = cb * inningNum;
+  let awayTeamGameScore = cb * inningNum;
+  scores.Home = homeTeamGameScore;
+  scores.Away = awayTeamGameScore;
+  return scores;
+};
 
-  /*Code Here*/
-
-}
+finalScore(inning(), 2);
 
 /* Task 4: 
 
@@ -106,5 +110,21 @@ Final Score: awayTeam - homeTeam */
 function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
+
+let inningArray=[1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function scoreboard(cb, inningNum) {
+  let scoreByInning = [];
+  inningNum.forEach(
+    (value, index)=>{
+      console.log(`Value per loop: ${value}, Index per loop: ${index}`);
+      let awayTeamScore = cb * value;
+      let homeTeamScore = cb * inningNum[index];
+      scoreByInning.push(` ${inningNum[index]} inning: ${homeTeamScore} - ${awayTeamScore}`)
+    }
+  )
+  return scoreByInning;
+}
+console.log(scoreboard(inning(), inningArray));
 
 
