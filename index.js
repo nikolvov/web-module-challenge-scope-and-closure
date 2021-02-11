@@ -28,10 +28,21 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * In counter 1, the variable 'count' is contained in the scope of the function countMaker, and the second,
+ * lesser function 'counter()' uses it to add 1 to the varibable 'count' each time the function is used. 
+ * The value will build on itself by 1 each time the function runs.
+ * 
+ * In counter 2, the variable count is in the global scope of the function "counter2".
+ * There is no inner function that does anything else to the variable 'count'. Count will reset to 0 after this function's been used. So basically, everytime 'counter2()' is used, the variable will reset to 0. This makes it so it always equlas one after the function is used.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * Both of the functions have closure. counter1() and counter2() have access to the elements they need to perform. The first function's variables are inside the function's scope and the second has a global variable in it's scope.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * Counter1 would be used if you needed to change a number multiple times to get the right outcome.
+ * Counter2 would be best if you always wanted the number to start at 0.
 */
 
 // counter1 code
@@ -56,11 +67,10 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
-}
+function inning(){
+  let randomNum=Math.round(Math.random()*2);
+};
+console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -76,11 +86,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(cb, inningNum){
+  var scores ={};
+  let homeTeamGameScore = cb * inningNum;
+  let awayTeamGameScore = cb * inningNum;
+  scores.Home = homeTeamGameScore;
+  scores.Away = awayTeamGameScore;
+  return scores;
+};
 
-  /*Code Here*/
-
-}
+finalScore(inning(), 2);
 
 /* Task 4: 
 
@@ -106,5 +121,21 @@ Final Score: awayTeam - homeTeam */
 function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
+
+let inningArray=[1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function scoreboard(cb, inningNum) {
+  let scoreByInning = [];
+  inningNum.forEach(
+    (value, index)=>{
+      console.log(`Value per loop: ${value}, Index per loop: ${index}`);
+      let awayTeamScore = cb * value;
+      let homeTeamScore = cb * inningNum[index];
+      scoreByInning.push(` ${inningNum[index]} inning: ${homeTeamScore} - ${awayTeamScore}`)
+    }
+  )
+  return scoreByInning;
+}
+console.log(scoreboard(inning(), inningArray));
 
 

@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+A closure is a function having access to the parent scope, even after the parent function has closed. Closure is a function plus it's lexical environment.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+The closure is the return function. It's the function inside of the function.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+The phrase 'Dan rolled a' is always the same. The number Dan rolls can change.
+
 c. What is the lexical scope of `newRoll`? 
+
+local / inner function / function scope
 
 ### Task 2c - Exit Ticket
 
